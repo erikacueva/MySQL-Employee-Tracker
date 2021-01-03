@@ -1,12 +1,10 @@
 USE employees_db;
 
-INSERT into department (name)
- VALUES 
- ("marketing"),
+INSERT into department (dept_name)
+VALUES ("marketing"),
  ("admin"),
  ("legal"),
  ("engineering");
-
 
 INSERT into role (title, salary, department_id)
 VALUES ("head engineer", 100000.00, 4),

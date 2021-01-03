@@ -80,7 +80,7 @@ function runSearch() {
         //   break;
 
         case "Update Employee Role":
-          songAndAlbumSearch();
+          updateEmpRole();
           break;
 
         //bonus
@@ -152,10 +152,91 @@ function addEmpl() {
 
 }
 
+
+function addRole() {
+  inquirer.prompt([
+    {
+      name: "title",
+      type: "input",
+      message: "What is the new row title? ",
+    },
+    {
+      name: "salary",
+      type: "input",
+      message: "What is the salary for this role? ",
+    },
+    {
+      name: "department_id",
+      type: "input",
+      message: "What is the department ID? ",
+    },  
+  ])
+  .then(function(answer) {
+    console.log(answer);
+    var query =
+    "INSERT into role SET ?";
+    connection.query(query, answer, function (err, res) {
+      console.log("Successfully added a new role!");
+      runSearch();
+    });
+
+  })
+
+}
+
+function addDept() {
+  inquirer.prompt([
+    {
+      name: "title",
+      type: "input",
+      message: "What is the new department name? ",
+    },
+  ])
+  .then(function(answer) {
+    console.log(answer);
+    var query =
+    "INSERT into department SET ?";
+    connection.query(query, answer, function (err, res) {
+      console.log("Successfully added a new department!");
+      runSearch();
+    });
+
+  })
+
+}
+
+// function updateEmpRole() {
+//   inquirer.prompt([
+//     {
+//       name: "updatedEmplRole",
+//       type: "list",
+//       message: "Select the employee you would like to update.",
+//       choices: "SELECT * FROM employee",
+//     },
+//   ])
+//   .then(function(answer) {
+//     console.log(answer);
+//     var query =
+//     "UPDATE employee SET first_name = ? , last_name =? , role_id =?, manager_id = ? WHERE id = ?";
+//     connection.query(query, answer, function (err, res) {
+//       console.log("Successfully updated the employee role!");
+//       runSearch();
+//     });
+
+//   })
+
+// }
+
+ 
+
+
+
+
+
+
 // function viewEmpDept() {
 //   var query = "SELECT employee FROM department";
 //   connection.query(query, function (err, res) {
 //     console.table(res);
 //     runSearch();
 //   });
-// }
